@@ -13,3 +13,15 @@
 .App-title {
   font-size: 2em;
 }
+
+.pizzaContainer {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.pizzaItem {
+  height: 350px;
+  width: 300px;
+  border: 1px solid black;
+  margin: 20px;
+}
