@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom'
 
 function CustomerForm() {
 
+    const checkoutTotal = require('../checkoutTotal');
     let [pizzaToAdd, setPizzaToAdd] = useState({customer_name: '', street_address: '', city: '', zip: '', type: ''});
     let [type, setType] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
+    const pizzaList = useSelector(store => store.orderReducer);
 
     const handleNameChange = (event) => {
         setPizzaToAdd({
@@ -43,10 +45,14 @@ function CustomerForm() {
         if (target.checked){
             setType(target.value);
         }
+        setPizzaToAdd({
+            ...pizzaToAdd,
+            type: target.value
+        })
     }
 
     const addPizza = (event) => {
-        event.preventDefault();
+        
         console.log(pizzaToAdd);
         dispatch({type: 'ADD_CUSTOMER', payload: pizzaToAdd})
         //clear inputs 
@@ -58,6 +64,9 @@ function CustomerForm() {
 
     return (
         <>
+            <h1>Total: {checkoutTotal(pizzaList)}</h1>
+        
+
         <form className="form" onSubmit={(event) => addPizza(event)}>
 
             <h2>Customer Information:</h2>

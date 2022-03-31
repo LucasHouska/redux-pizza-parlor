@@ -7,8 +7,23 @@ import {createStore, combineReducers, applyMiddleware} from 'redux';
 import logger from 'redux-logger';
 
 const pizzaReducer = (state = [], action) => {
+    if(action.type === 'SET_PIZZA_LIST') {
+        return action.payload
+    }
 
-    return state
+    return state;
+}
+
+const orderReducer = (state = [], action) => {
+    if(action.type === 'ADD_PIZZA') {
+        return [...state, action.payload]
+    } else if(action.type === 'REMOVE_PIZZA') {
+        return state.filter((item) => item != action.payload)
+    } else if (action.type === 'CLEAR_CART') {
+        return [];
+    }
+
+    return state;
 }
 
 const customerReducer = (state = {}, action) => {
@@ -21,7 +36,8 @@ const customerReducer = (state = {}, action) => {
 const reduxStore = createStore(
     combineReducers({
         pizzaReducer,
-        customerReducer
+        customerReducer,
+        orderReducer
     }),
     applyMiddleware(logger)
 );
