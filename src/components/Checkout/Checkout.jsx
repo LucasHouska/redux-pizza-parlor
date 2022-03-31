@@ -2,7 +2,9 @@ import {useSelector} from 'react-redux';
 import {dispatch, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
+
 function Checkout() {
+    const checkoutTotal = require('../checkoutTotal');
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -37,16 +39,6 @@ function Checkout() {
         history.push('/')
     }
 
-    const checkoutTotal = () => {
-        let total = 0;
-
-        for (let pizza of pizzaList) {
-            total += Number(pizza.price);
-        }
-
-        return total;
-    }
-
     return (
         <>
             <h2>Step 3: Checkout</h2>
@@ -70,7 +62,7 @@ function Checkout() {
                         ))}
                 </tbody>
             </table>
-            <h1>Total: {checkoutTotal()}</h1>
+            <h1>Total: {checkoutTotal(pizzaList)}</h1>
             <button onClick={handleCheckout}>CHECKOUT</button>
         </>
     )
