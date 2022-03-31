@@ -8,6 +8,8 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 
 function App() {
 
+  
+
   return (
     <Router>
       <div className='App'>
@@ -27,7 +29,6 @@ function App() {
         <Route path="/admin">
           <Admin />
         </Route>
-
       </div>
     </Router>
   );
