@@ -13,15 +13,11 @@ function App() {
     <Router>
       <div className='App'>
 
-        <header className='App-header'>
-          <h1 className='App-title'>Prime Pizza</h1>
-        </header>
-        
         <Route path="/customerInfo">
           <CustomerForm />
         </Route>
 
-        <Route path="/addToCart">
+        <Route path="/" exact>
           <AddToCart />
         </Route>
 
@@ -32,9 +28,6 @@ function App() {
         <Route path="/admin">
           <Admin />
         </Route>
-
-        <img src='images/pizza_photo.png' />
-        <p>Pizza is great.</p>
 
       </div>
     </Router>
