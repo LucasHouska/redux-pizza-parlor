@@ -21,22 +21,23 @@ function Checkout() {
     //     time: '2022-03-31 11:28'
     // };
 
-    const pizzaList = [{
-            id: '1',
-            name: 'Tomato Soup',
-            price: '12.99'
-        }, {
-            id: '2',
-            name: 'Pepperoni',
-            price: '14.99'
-        }
-    ];
+    const pizzaList = useSelector(store => store.orderReducer);
+    // [{
+    //         id: '1',
+    //         name: 'Tomato Soup',
+    //         price: '12.99'
+    //     }, {
+    //         id: '2',
+    //         name: 'Pepperoni',
+    //         price: '14.99'
+    //     }
+    // ];
 
     const handleCheckout = () => {
         // TODO: Clear the cart and navigate to the product page
         
 
-        axios.post('/api/order', )
+        // axios.post('/api/order', )
 
         dispatch({
             type: 'CLEAR_CART'
