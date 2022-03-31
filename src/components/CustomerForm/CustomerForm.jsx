@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import {useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom'
 
 function CustomerForm() {
 
     let [pizzaToAdd, setPizzaToAdd] = useState({customer_name: '', street_address: '', city: '', zip: '', type: ''});
-    let [isPickup, setIsPickup] = useState('false');
+    let [type, setType] = useState('');
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleNameChange = (event) => {
         setPizzaToAdd({
@@ -23,32 +25,40 @@ function CustomerForm() {
 
     const handleCityChange = (event) => {
         setPizzaToAdd({
-            ...pizzaToAdd, 
+            ...pizzaToAdd,
             city: event.target.value
         })
     }
 
     const handleZipChange = (event) => {
         setPizzaToAdd({
-            ...pizzaToAdd, 
+            ...pizzaToAdd,
             zip: event.target.value
         })
     }
 
     const handleType = (event) => {
-          {isPickup ? setPizzaToAdd({...pizzaToAdd, type: event.target.value}) : setPizzaToAdd({...pizzaToAdd, type: event.target.value}) }
+        event.preventDefault;
+        const target = event.target;
+        if (target.checked){
+            setType(target.value);
+        }
     }
 
     const addPizza = (event) => {
         event.preventDefault();
-        dispatch({type: 'ADD_PIZZA', payload: pizzaToAdd})
+        console.log(pizzaToAdd);
+        dispatch({type: 'ADD_CUSTOMER', payload: pizzaToAdd})
         //clear inputs 
         setPizzaToAdd({customer_name: '', street_address: '', city: '', zip: ''})
+        history.push('/checkout')
     }
+
+    console.log(type);
 
     return (
         <>
-        <form onSubmit={(event) => addPizza}>
+        <form onSubmit={(event) => addPizza(event)}>
 
             <input 
             onChange={handleNameChange}
@@ -82,16 +92,20 @@ function CustomerForm() {
                 <input 
                     type="radio" 
                     name="radio" 
+                    value={'pickup'}
+                    checked={type == 'pickup'}
                     onChange={handleType} 
-                    value={pizzaToAdd.pickup}/>
+                    />
                 Pickup</label>
 
             <label>
                 <input 
                     type="radio" 
                     name="radio" 
+                    value={'delivery'}
+                    checked={type == 'delivery'}
                     onChange={handleType} 
-                    value={pizzaToAdd.delivery}/>
+                    />
                 Delivery</label>
 
             <button type="submit">NEXT</button>

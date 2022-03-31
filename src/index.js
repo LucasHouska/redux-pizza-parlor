@@ -11,9 +11,9 @@ const pizzaReducer = (state = [], action) => {
     return state
 }
 
-const customerReducer = (state = [], action) => {
-    if (action.type === 'ADD_PIZZA'){
-        return [...state, action.payload]
+const customerReducer = (state = {}, action) => {
+    if (action.type === 'ADD_CUSTOMER'){
+        return action.payload
     }
     return state
 }
