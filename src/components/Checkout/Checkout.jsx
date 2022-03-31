@@ -10,15 +10,16 @@ function Checkout() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const customerInfo = {
-        customer_name: 'Freddy',
-        street_address: '123 Main Ave',
-        city: 'Eagan',
-        zip: '55122',
-        type: 'Pickup',
-        total: '12.50',
-        time: '2022-03-31 11:28'
-    };
+    const customerInfo =  useSelector(store => store.customerReducer);
+    // {
+    //     customer_name: 'Freddy',
+    //     street_address: '123 Main Ave',
+    //     city: 'Eagan',
+    //     zip: '55122',
+    //     type: 'Pickup',
+    //     total: '12.50',
+    //     time: '2022-03-31 11:28'
+    // };
 
     const pizzaList = [{
             id: '1',
