@@ -6,40 +6,29 @@ import { useDispatch, useSelector } from 'react-redux';
 function PizzaListItem({ pizza }) {
 
     const dispatch = useDispatch();
-
     const orderReducer = useSelector(store => store.orderReducer);
 
-    const [isPizza, setIsPizza] = useState(false);
-
-
-
     const isThisPizzaInTheCart = () => {
-        console.log(orderReducer)
-        if (orderReducer.length === 0) {
+        if (isInCart) {
+            dispatch({ type: 'REMOVE_PIZZA', payload: pizza })
+        } else {
             dispatch({ type: 'ADD_PIZZA', payload: pizza })
-            setIsPizza(true)
-        } else if (orderReducer.length > 0) {
-            for (let item of orderReducer) {
-                if (item.id !== pizza.id) {
-                    dispatch({ type: 'ADD_PIZZA', payload: pizza })
-                    setIsPizza(true)
-                } else if (item.id === pizza.id) {
-                    dispatch({ type: 'REMOVE_PIZZA', payload: pizza })
-                    setIsPizza(false)
-                }
-            }
         }
     }
 
-
-    console.log(isPizza)
+    let isInCart = false;
+    for (let item of orderReducer) {
+        if (item.id == pizza.id) {
+            isInCart = true;
+        }
+    }
 
     return (
         <>
             <div className='pizzaItem'>
                 <h3>{pizza.name}</h3>
                 <p>{pizza.description}</p>
-                {isPizza ? <button onClick={(event) => isThisPizzaInTheCart()}>Remove</button> : <button onClick={(event) => isThisPizzaInTheCart()}>Add</button>}
+                {isInCart ? <button onClick={(event) => isThisPizzaInTheCart()}>Remove</button> : <button onClick={(event) => isThisPizzaInTheCart()}>Add</button>}
             </div>
         </>
     )

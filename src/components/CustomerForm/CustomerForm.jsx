@@ -43,10 +43,14 @@ function CustomerForm() {
         if (target.checked){
             setType(target.value);
         }
+        setPizzaToAdd({
+            ...pizzaToAdd,
+            type: target.value
+        })
     }
 
     const addPizza = (event) => {
-        event.preventDefault();
+        
         console.log(pizzaToAdd);
         dispatch({type: 'ADD_CUSTOMER', payload: pizzaToAdd})
         //clear inputs 
