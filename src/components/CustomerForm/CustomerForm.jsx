@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom'
 
 function CustomerForm() {
 
+    const checkoutTotal = require('../checkoutTotal');
     let [pizzaToAdd, setPizzaToAdd] = useState({customer_name: '', street_address: '', city: '', zip: '', type: ''});
     let [type, setType] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
+    const pizzaList = useSelector(store => store.orderReducer);
 
     const handleNameChange = (event) => {
         setPizzaToAdd({
@@ -62,9 +64,15 @@ function CustomerForm() {
 
     return (
         <>
-        <form onSubmit={(event) => addPizza(event)}>
+            <h1>Total: {checkoutTotal(pizzaList)}</h1>
+        
+
+        <form className="form" onSubmit={(event) => addPizza(event)}>
+
+            <h2>Customer Information:</h2>
 
             <input 
+            className="formInput"
             onChange={handleNameChange}
             type="text"
             placeholder="Name"
@@ -72,6 +80,7 @@ function CustomerForm() {
             />
 
             <input 
+            className="formInput"
             onChange={handleAddressChange}
             type="text"
             placeholder="Street Address"
@@ -79,6 +88,7 @@ function CustomerForm() {
             />
 
             <input 
+            className="formInput"
             onChange={handleCityChange}
             type="text"
             placeholder="City"
@@ -86,14 +96,18 @@ function CustomerForm() {
             />
 
             <input 
+            className="formInput"
             onChange={handleZipChange}
             type="text"
             placeholder="Zip"
             value={pizzaToAdd.zip}
             />
 
+            <h2>Pickup or Delivery?</h2>
+
             <label>
                 <input 
+                    className="radio"
                     type="radio" 
                     name="radio" 
                     value={'pickup'}
@@ -104,6 +118,7 @@ function CustomerForm() {
 
             <label>
                 <input 
+                    className="radio"
                     type="radio" 
                     name="radio" 
                     value={'delivery'}
