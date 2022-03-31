@@ -14,11 +14,13 @@ const pizzaReducer = (state = [], action) => {
     return state;
 }
 
-const orderReducer = (state = ['pepperoni', 'cheese', 'sausage'], action) => {
+const orderReducer = (state = [], action) => {
     if(action.type === 'ADD_PIZZA') {
         return [...state, action.payload]
     } else if(action.type === 'REMOVE_PIZZA') {
         return state.filter((item) => item != action.payload)
+    } else if (action.type === 'CLEAR_CART') {
+        return [];
     }
 
     return state;

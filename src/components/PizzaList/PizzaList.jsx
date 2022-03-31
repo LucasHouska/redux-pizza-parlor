@@ -30,8 +30,8 @@ function PizzaList() {
         <>
             <h1>Step 1: Select Your Pizza</h1>
             <div className='pizzaContainer'>
-                {pizzaReducer.map((pizza, i) => {
-                return <PizzaListItem key={i} pizza={pizza}/>;
+                {pizzaReducer.map(pizza => {
+                return <PizzaListItem key={pizza.id} pizza={pizza}/>;
                 })}
             </div>
 
