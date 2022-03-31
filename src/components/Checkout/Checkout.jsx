@@ -1,6 +1,11 @@
-
+import {useSelector} from 'react-redux';
+import {dispatch, useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 function Checkout() {
+
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const customerInfo = {
         customer_name: 'Freddy',
@@ -22,6 +27,15 @@ function Checkout() {
             price: '14.99'
         }
     ];
+
+    const handleCheckout = () => {
+        // TODO: Clear the cart and navigate to the product page
+    
+        dispatch({
+            type: 'CLEAR_CART'
+        })
+        history.push('/')
+    }
 
     const checkoutTotal = () => {
         let total = 0;
@@ -57,7 +71,7 @@ function Checkout() {
                 </tbody>
             </table>
             <h1>Total: {checkoutTotal()}</h1>
-            <button>CHECKOUT</button>
+            <button onClick={handleCheckout}>CHECKOUT</button>
         </>
     )
 }
