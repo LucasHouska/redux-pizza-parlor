@@ -1,10 +1,10 @@
 # CheckOut CheckList
 [x] - display 'Step 3: Checkout'
-[] - use useSelector to get customer info and pizza info
-[] - display total
-[] - 'CHECKOUT' button
+[x] - use useSelector to get customer info and pizza info
+[x] - display total
+[x] - 'CHECKOUT' button
     [] - send POST
     [] - show confirmation dialog
         [] - sweet alert?
-    [] - clear the cart
-    [] - navigate back to step 1 ('/')
+    [x] - clear the cart
+    [x] - navigate back to step 1 ('/')

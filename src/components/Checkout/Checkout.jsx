@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {useSelector} from 'react-redux';
 import {dispatch, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
@@ -32,7 +33,10 @@ function Checkout() {
 
     const handleCheckout = () => {
         // TODO: Clear the cart and navigate to the product page
-    
+        
+
+        axios.post('/api/order', )
+
         dispatch({
             type: 'CLEAR_CART'
         })
