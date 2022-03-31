@@ -32,12 +32,6 @@ function App() {
         <Route path="/admin">
           <Admin />
         </Route>
-
-
-
-
-        
-
       </div>
     </Router>
   );
