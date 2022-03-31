@@ -26,8 +26,10 @@ const orderReducer = (state = [], action) => {
     return state;
 }
 
-const customerReducer = (state = [], action) => {
-
+const customerReducer = (state = {}, action) => {
+    if (action.type === 'ADD_CUSTOMER'){
+        return action.payload
+    }
     return state
 }
 

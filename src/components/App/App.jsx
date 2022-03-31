@@ -1,11 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 import './App.css';
 import Checkout from '../Checkout/Checkout';
 import CustomerForm from '../CustomerForm/CustomerForm';
 import AddToCart from '../AddToCart/AddToCart';
 import Admin from '../Admin/Admin';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
 function App() {
 
