@@ -21,7 +21,7 @@ function App() {
           <CustomerForm />
         </Route>
 
-        <Route path="/addToCart">
+        <Route exact path="/">
           <AddToCart />
         </Route>
 
@@ -33,8 +33,10 @@ function App() {
           <Admin />
         </Route>
 
-        <img src='images/pizza_photo.png' />
-        <p>Pizza is great.</p>
+
+
+
+        
 
       </div>
     </Router>
