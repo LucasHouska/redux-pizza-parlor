@@ -4,7 +4,7 @@
 
 .App-header {
   background-color: #222;
-  height: 70px;
+  height: 100px;
   padding: 20px;
   color: white;
   margin-bottom: 20px;
@@ -32,12 +32,41 @@
 
 .pizzaContainer {
   display: flex;
-  flex-flow: wrap;
+    flex-flow: wrap;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .pizzaItem {
   height: 350px;
-  width: 300px;
-  border: 1px solid black;
-  margin: 20px;
+    width: 300px;
+    border: 1px solid black;
+    margin: 20px;
+    padding: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.total {
+  display: flex;
+  justify-content: flex-end;
+}
+
+table {
+  margin: 50px auto;
+  border: 1px solid black;
+}
+
+td, th {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.next {
+  align-self: right;
+  margin-bottom: 100px;
+  padding: 10px;
+}
+

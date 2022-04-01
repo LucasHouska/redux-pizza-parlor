@@ -29,6 +29,7 @@ function PizzaListItem({ pizza }) {
             <div className='pizzaItem'>
                 <h3>{pizza.name}</h3>
                 <p>{pizza.description}</p>
+                <h3>${pizza.price}</h3>
                 {isInCart ? <button onClick={(event) => isThisPizzaInTheCart()}>Remove</button> : <button onClick={(event) => isThisPizzaInTheCart()}>Add</button>}
             </div>
         </>

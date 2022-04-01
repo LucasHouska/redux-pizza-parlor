@@ -28,7 +28,7 @@ function PizzaList() {
 
     return (
         <>
-            <h1>Step 1: Select Your Pizza</h1>
+            <h2>Step 1: Select Your Pizza</h2>
             <div className='pizzaContainer'>
                 {pizzaReducer.map(pizza => {
                 return <PizzaListItem key={pizza.id} pizza={pizza}/>;
