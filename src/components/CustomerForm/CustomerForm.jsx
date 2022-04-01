@@ -11,6 +11,8 @@ function CustomerForm() {
     const history = useHistory();
     const pizzaList = useSelector(store => store.orderReducer);
 
+    
+
     const handleNameChange = (event) => {
         setPizzaToAdd({
             ...pizzaToAdd,
@@ -64,12 +66,15 @@ function CustomerForm() {
 
     return (
         <>
-            <h1>Total: {checkoutTotal(pizzaList)}</h1>
+            <div className='App-header'>
+                <h1 className='App-title'>Prime Pizza</h1>
+                <h2 className='total'>Total: ${checkoutTotal(pizzaList)}</h2>
+            </div>
         
 
         <form className="form" onSubmit={(event) => addPizza(event)}>
 
-            <h2>Customer Information:</h2>
+            <h2>Step 2: Customer Information</h2>
 
             <input 
             className="formInput"
@@ -110,8 +115,8 @@ function CustomerForm() {
                     className="radio"
                     type="radio" 
                     name="radio" 
-                    value={'pickup'}
-                    checked={type == 'pickup'}
+                    value={'Pickup'}
+                    checked={type == 'Pickup'}
                     onChange={handleType} 
                     />
                 Pickup</label>
@@ -121,8 +126,8 @@ function CustomerForm() {
                     className="radio"
                     type="radio" 
                     name="radio" 
-                    value={'delivery'}
-                    checked={type == 'delivery'}
+                    value={'Delivery'}
+                    checked={type == 'Delivery'}
                     onChange={handleType} 
                     />
                 Delivery</label>

@@ -1,7 +1,9 @@
 import axios from 'axios';
-import {useSelector} from 'react-redux';
-import {dispatch, useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { dispatch, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
+
 
 
 function Checkout() {
@@ -10,7 +12,7 @@ function Checkout() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const customerInfo =  useSelector(store => store.customerReducer);
+    const customerInfo = useSelector(store => store.customerReducer);
 
     const pizzaList = useSelector(store => store.orderReducer);
 
@@ -19,7 +21,7 @@ function Checkout() {
     //     "street_address": "20 W 34th St",
     //     "city": "New York",
     //     "zip": "10001",
-            // "type": "Pickup",
+    // "type": "Pickup",
     //     "total": "27.98",
     //     
     //     "pizzas": [{
@@ -31,7 +33,7 @@ function Checkout() {
     //     }]
     //   }
 
-    
+
 
     const handleCheckout = () => {
         const order = {
@@ -44,25 +46,36 @@ function Checkout() {
             pizzas: pizzaList
         };
         axios.post('/api/order', order)
-            .then( response => {
+            .then(response => {
                 dispatch({
                     type: 'CLEAR_CART'
                 })
+                swal({
+                    title: "No cooking tonight!",
+                    text: "You eatin GOOOOOD!",
+                    icon: "success",
+                    button: "Eshkitit!",
+                });
                 history.push('/')
             })
-            .catch( err => {
+            .catch(err => {
                 console.log(err);
             })
 
-        
+
     }
 
     return (
         <>
+            <div className='App-header'>
+                <h1 className='App-title'>Prime Pizza</h1>
+            </div>
             <h2>Step 3: Checkout</h2>
-            <p>{customerInfo.customer_name} {customerInfo.type}</p>
+            <p>{customerInfo.customer_name}</p>
             <p>{customerInfo.street_address}</p>
             <p>{customerInfo.city}</p>
+            <br/>
+            <h3>💸 {customerInfo.type} 💸</h3>
 
             <table>
                 <thead>
@@ -73,14 +86,14 @@ function Checkout() {
                 </thead>
                 <tbody>
                     {pizzaList.map(pizza => (
-                            <tr key={pizza.id}>
-                                <td>{pizza.name}</td>
-                                <td>{pizza.price}</td>
-                            </tr>
-                        ))}
+                        <tr key={pizza.id}>
+                            <td>{pizza.name}</td>
+                            <td>{pizza.price}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
-            <h1>Total: {checkoutTotal(pizzaList)}</h1>
+            <h1>Total: ${checkoutTotal(pizzaList)}</h1>
             <button onClick={handleCheckout}>CHECKOUT</button>
         </>
     )
