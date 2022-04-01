@@ -12,6 +12,7 @@ function PizzaListItem({ pizza }) {
         if (isInCart) {
             dispatch({ type: 'REMOVE_PIZZA', payload: pizza })
         } else {
+            pizza.quantity = '1';
             dispatch({ type: 'ADD_PIZZA', payload: pizza })
         }
     }
