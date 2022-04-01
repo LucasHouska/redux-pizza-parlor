@@ -11,38 +11,50 @@ function Checkout() {
     const history = useHistory();
 
     const customerInfo =  useSelector(store => store.customerReducer);
-    // {
-    //     customer_name: 'Freddy',
-    //     street_address: '123 Main Ave',
-    //     city: 'Eagan',
-    //     zip: '55122',
-    //     type: 'Pickup',
-    //     total: '12.50',
-    //     time: '2022-03-31 11:28'
-    // };
 
     const pizzaList = useSelector(store => store.orderReducer);
-    // [{
-    //         id: '1',
-    //         name: 'Tomato Soup',
-    //         price: '12.99'
-    //     }, {
-    //         id: '2',
-    //         name: 'Pepperoni',
-    //         price: '14.99'
-    //     }
-    // ];
+
+    // {
+    //     "customer_name": "Donatello",
+    //     "street_address": "20 W 34th St",
+    //     "city": "New York",
+    //     "zip": "10001",
+            // "type": "Pickup",
+    //     "total": "27.98",
+    //     
+    //     "pizzas": [{
+    //       "id": "1",
+    //       "quantity": "1"
+    //     },{
+    //       "id": "2",
+    //       "quantity": "1"
+    //     }]
+    //   }
+
+    
 
     const handleCheckout = () => {
-        // TODO: Clear the cart and navigate to the product page
+        const order = {
+            customer_name: customerInfo.customer_name,
+            street_address: customerInfo.street_address,
+            city: customerInfo.city,
+            zip: customerInfo.zip,
+            type: customerInfo.type,
+            total: checkoutTotal(pizzaList),
+            pizzas: pizzaList
+        };
+        axios.post('/api/order', order)
+            .then( response => {
+                dispatch({
+                    type: 'CLEAR_CART'
+                })
+                history.push('/')
+            })
+            .catch( err => {
+                console.log(err);
+            })
+
         
-
-        // axios.post('/api/order', )
-
-        dispatch({
-            type: 'CLEAR_CART'
-        })
-        history.push('/')
     }
 
     return (
